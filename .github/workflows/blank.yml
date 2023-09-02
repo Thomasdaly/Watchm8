@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/watchm8:latest
+          tags: ${{ secrets.thomasdaly }}/watchm8:latest
