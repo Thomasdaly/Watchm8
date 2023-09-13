@@ -1,0 +1,14 @@
+<body>
+    
+    <select name="country" id="country">
+        {{#each countries}}
+            <option value="{{alpha2_code}}">{{english_name}}</option>
+        {{/each}}
+    // Generate a button that will pass the selected country to the server
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 cursor-pointer">
+        Search
+    </button>
+    </select>
+
+
+</body>
