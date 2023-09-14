@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async function(req, res, next) { // Note the 'async' keyword
+router.get('/countryselect', async function(req, res, next) { // Note the 'async' keyword
     try {
         const apiKey = '6c6dc6f91161b15e53ed5de0ceb38bfa';
       
