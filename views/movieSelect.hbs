@@ -3,21 +3,10 @@
         <h1 class="text-2xl font-bold mb-4">Movie Selection</h1>
 
         <!-- Movie search form -->
-        <form action="/movieselect" method="POST">
-            <input
-                type="text"
-                id="searchQuery"
-                name="searchQuery"
-                class="border border-gray-300 p-2 w-full rounded-l"
-                placeholder="Search for movies..."
-            />
-            <button
-                type="submit"
-                class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 cursor-pointer"
-            >
-                Search
-            </button>
-        </form>
+        <form method="post" action="/movieselect">
+  <input type="text" name="search" placeholder="Search for a movie">
+  <button type="submit">Search</button>
+</form>
 
         <!-- Display movie results here -->
         <div id="movieResults" class="mt-8">
@@ -25,6 +14,12 @@
             <ul>
                 {{#each movies}}
                 <li>{{title}}</li>
+                <form method="post" action="/movieselect">
+                    <input type="hidden" name="title" value="{{title}}">
+                    <input type="hidden" name="year" value="{{year}}">
+                    <input type="hidden" name="poster" value="{{poster}}">
+                    <input type="hidden" name="imdbID" value="{{imdbID}}">
+                    <button type="submit">Select</button>
                 {{/each}}
             </ul>
         </div>
