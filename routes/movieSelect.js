@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router(); // Import the fetch function
 let movies = [];
+let selectedMovie = [];
 router.get('/', function(req, res, next) {
   res.render('movieSelect', { title: 'Movie Selection', movies: [] });
 });
@@ -33,8 +34,13 @@ router.post('/', async function(req, res, next) {
 
 router.post('/', async function(req, res, next) {
   try {
-    const response = req.body.title;
-    console.log(`Query Response:${response}`);
+    console.log(`Query Response:${req.body.title}`)
+    const selectedMovie = {
+      title: req.body.title,
+      imdbID: req.body.imdbID
+  };
+    selectedMovie.push(selectedMovie);  
+    console.log(`Query Response:${selectedMovie.title}`);
     res.render('movieSelect', { title: 'Movie Selection', movies});
   }
   catch (error) {
