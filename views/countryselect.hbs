@@ -1,14 +1,19 @@
 <body>
-    
-    <select name="country" id="country">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Select a Country</h1>
+
+        <!-- Country selection form -->
+        <form method="post" action="/countryselect">
+    <select name="selectedCountry" id="country">
         {{#each countries}}
-            <option value="{{alpha2_code}}">{{english_name}}</option>
+        <option value="{{iso_3166_1}}">{{english_name}}</option>
         {{/each}}
-    // Generate a button that will pass the selected country to the server
+    </select>
     <button type="submit" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 cursor-pointer">
         Search
     </button>
-    </select>
+</form>
 
-
+        <!-- Include your client-side JavaScript here if needed -->
+    </div>
 </body>

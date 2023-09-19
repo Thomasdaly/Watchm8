@@ -3,11 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var AWS = require('aws-sdk');
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var movieselectRouter = require('./routes/movieSelect');
 var countryselectRouter = require('./routes/countryselect');
+var serviceselectRouter = require('./routes/serviceselect');
+
 var app = express();
 
 // view engine setup
@@ -19,11 +25,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'some secret',
+  name: 'uniquesessionid',
+  cookie: { maxAge: 60000 },
+  saveUninitialized: false,
+}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movieselect', movieselectRouter);
 app.use('/countryselect', countryselectRouter);
+app.use('/serviceselect', serviceselectRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
