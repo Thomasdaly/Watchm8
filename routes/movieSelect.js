@@ -4,8 +4,17 @@ const router = express.Router();
 let movies = [];
 let selectedMovies = []; // Use an array to store selected movies
 
-router.get('/', function(req, res, next) {
+function isAuthenticated (req, res, next) {
+  if (req.session.user) next()
+  else next('route')
+}
+
+router.get('/', isAuthenticated, function(req, res, next) {
   res.render('movieSelect', { title: 'Movie Selection', movies: [], selectedMovies: [] });
+});
+
+router.get('/', function(req, res, next) {
+  res.render('login', { title: 'Login' });
 });
 
 router.post('/', async function(req, res, next) {
