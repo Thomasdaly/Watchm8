@@ -6,20 +6,14 @@ var logger = require('morgan');
 var session = require('express-session');
 var AWS = require('aws-sdk');
 
-AWS.config.update({
-  accessKeyId: 'ASIA5DYSEEJ4WIUP5RBL',
-  secretAccessKey: 'bFn22qmDXaWhfo0JWBcLLj4xzwa1y+dyqK7pFXkF',
-  region: 'ap-southeast-2', // Update with your AWS region
-});
-const dynamodb = new AWS.DynamoDB.DocumentClient();
-const tableName = 'Users';
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var movieselectRouter = require('./routes/movieSelect');
 var countryselectRouter = require('./routes/countryselect');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
+var serviceselectRouter = require('./routes/serviceselect');
+
 var app = express();
 
 // view engine setup
@@ -42,8 +36,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movieselect', movieselectRouter);
 app.use('/countryselect', countryselectRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+app.use('/serviceselect', serviceselectRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var session = require('express-session');
 
 let countries = [];
 let selectedCountry= null; // Use an array to store selected movies
@@ -33,6 +34,7 @@ router.get('/', async function(req, res, next) { // Note the 'async' keyword
       
       selectedCountry = country;
       console.log(selectedCountry);
+      req.session.selectedCountry = selectedCountry;
       res.render('countryselect', { title: 'Country Selection', countries, selectedCountry });
     } catch (error) {
       console.error('Error selecting country:', error);
