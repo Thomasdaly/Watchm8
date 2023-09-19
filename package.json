@@ -10,5 +10,8 @@
         "http-server": "^14.1.1",
         "joi": "^17.10.2",
         "morgan": "^1.10.0"
-    }
+    },
+    "scripts": {
+        "start": "node app.js"
+      }
 }
