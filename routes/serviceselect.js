@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
     const selectedServices = req.body.selectedServices;
     req.session.selectedServices = selectedServices;
     console.log(`Selected services: ${selectedServices}`);
-    res.redirect('/recommendations');
+    res.redirect('/movieselect');
 });
 
 module.exports = router;

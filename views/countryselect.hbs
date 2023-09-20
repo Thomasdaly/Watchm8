@@ -4,16 +4,14 @@
 
         <!-- Country selection form -->
         <form method="post" action="/countryselect">
-    <select name="selectedCountry" id="country">
-        {{#each countries}}
-        <option value="{{iso_3166_1}}">{{english_name}}</option>
-        {{/each}}
-    </select>
-    <button type="submit" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 cursor-pointer">
-        Search
-    </button>
-</form>
-
-        <!-- Include your client-side JavaScript here if needed -->
+            <select name="selectedCountry" id="country">
+                {{#each countries}}
+                <option value="{{iso_3166_1}}">{{english_name}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 cursor-pointer">
+                Search
+            </button>
+        </form>
     </div>
 </body>

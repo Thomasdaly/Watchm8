@@ -12,12 +12,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'WatchM8', pageCounter: jsonData.views });
 });
 
-
-
-// Configure AWS SDK (replace with your own credentials from the AWS console)
-// These credentials expire after approx 6 hours, so you will need to refresh them
-// It is recommended to put these credentials in an env file and use process.env to retrieve them
-// On EC2, you can assign the ec2SSMCab432 IAM role to the instance and the SDK will automatically retrieve the credentials. This will also work from inside a Docker container.
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -37,7 +31,6 @@ const jsonData = {
   views: 0,
 };
 router.use((req, res, next) => {
-  // Assuming jsonData.views is your view counter data
   res.locals.pageCounter = jsonData.views;
   next();
 });
