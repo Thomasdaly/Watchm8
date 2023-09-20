@@ -15,15 +15,19 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+              <a href="/countryselect" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Country Select</a>
+              <a href="/serviceselect" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Service Select</a>
               <a href="/movieselect" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Movie Select</a>
               <a href="/recommendations" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Recommendations</a>
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Reports</a>
             </div>
           </div>
         </div>
-        Page Views: {{{pageCounter}}}
+        <!-- Add the "text-white" class to change the text color to white -->
+        <div class="text-white">Page Views: {{{pageCounter}}}</div>
+      </div>
+    </div>
+  </nav>
+</div>
 
 
     <!-- Mobile menu, show/hide based on menu state. -->

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Include your head content here -->
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Movie Selection</h1>
 
         <!-- Movie search form -->
         <form method="post" action="/movieselect">
@@ -16,33 +15,26 @@
         <!-- Display movie results here -->
         <div id="movieResults" class="mt-8">
             <h2 class="text-xl font-semibold mb-2">Movie Results:</h2>
-            <ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {{#each movies}}
-                <li>
-                    {{title}}
-                    <img src="https://image.tmdb.org/t/p/w185/{{poster_path}}" alt="{{title}}">
-                    <!-- Use a form for each movie to allow selecting it -->
-                    <form method="post" action="/movieselect/select">
-                        <input type="hidden" name="title" value="{{title}}">
-                        <input type="hidden" name="id" value="{{id}}">
-                        <button type="submit">Select</button>
-                    </form>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+                <div class="streaming-service rounded-lg overflow-hidden shadow-lg" data-provider-id="{{id}}">
+                    <img src="https://image.tmdb.org/t/p/w185/{{poster_path}}" alt="{{title}} Poster">
+                    <div class="px-6 py-4 text-center"> <!-- Added text-center class here -->
+                        <div class="provider-name text-xl mb-2">{{title}}</div>
 
-        <!-- Display selected movies here -->
-        <div id="selectedMovies" class="mt-8">
-            <h2 class="text-xl font-semibold mb-2">Selected Movies:</h2>
-            <ul>
-                {{#each selectedMovies}}
-                <li>{{title}}</li>
+                        <!-- Use a form for each movie to allow selecting it -->
+                        <form method="post" action="/movieselect/select">
+                            <input type="hidden" name="title" value="{{title}}">
+                            <input type="hidden" name="id" value="{{id}}">
+                            <button type="submit" class="watch-trailer-button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                                Select
+                            </button>
+                        </form>
+                    </div>
+                </div>
                 {{/each}}
-            </ul>
+            </div>
         </div>
-
-        <!-- Include your client-side JavaScript here if needed -->
     </div>
 </body>
 </html>

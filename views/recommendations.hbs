@@ -1,48 +1,54 @@
-<!DOCTYPE html>
-<html>
 <head>
-    <!-- Include your head content here -->
+    
+        
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Movie Selection</h1>
 
-        <!-- Movie search form -->
-        <form method="post" action="/movieselect">
-            <input type="text" name="search" placeholder="Search for a movie">
-            <button type="submit">Search</button>
-        </form>
+<div class="container mx-auto p-4">
+  <div class="container mx-auto px-4 py-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {{#each recommendedMovies}}
+      <div class="streaming-service rounded-lg overflow-hidden shadow-lg" data-provider-id="{{provider_id}}">
+        <img src="https://image.tmdb.org/t/p/w185/{{movieData.poster_path}}" alt="{{movieData.title}} Poster">
+        <div class="px-6 py-4">
+          <div class="provider-name text-xl mb-2">{{movieData.title}}</div>
+          
+          <!-- Wrap provider logos in a div with flexbox -->
+          <div class="flex flex-wrap justify-center">
+            {{#each streamingProviders}}
+              <img src="https://image.tmdb.org/t/p/w185/{{logo_path}}" alt="{{provider_name}} Logo" class="w-16 h-16 m-2">
+            {{/each}}
+          </div>
 
-        <!-- Display movie results here -->
-        <div id="movieResults" class="mt-8">
-            <h2 class="text-xl font-semibold mb-2">Movie Results:</h2>
-            <ul>
-                {{#each movies}}
-                <li>
-                    {{title}}
-                    <img src="https://image.tmdb.org/t/p/w185/{{poster_path}}" alt="{{title}}">
-                    <!-- Use a form for each movie to allow selecting it -->
-                    <form method="post" action="/movieselect/select">
-                        <input type="hidden" name="title" value="{{title}}">
-                        <input type="hidden" name="imdbID" value="{{imdbID}}">
-                        <button type="submit">Select</button>
-                    </form>
-                </li>
-                {{/each}}
-            </ul>
+          <!-- Display ratings here -->
+          <div class="ratings mt-2">
+            <p class="text-sm font-semibold">IMDB: {{ratings.[Internet Movie Database]}}</p>
+            <p class="text-sm font-semibold">Rotten Tomatoes: {{ratings.[Rotten Tomatoes]}}</p>
+            <p class="text-sm font-semibold">Metacritic: {{ratings.[Metacritic]}}</p>
+          </div>
+
+          <form action="/recommendations/open-youtube" method="POST">
+            <input type="hidden" name="title" value="{{movieData.title}}">
+            <button type="submit" class="watch-trailer-button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+              Watch Trailer
+            </button>
+          </form>
         </div>
-
-        <!-- Display selected movies here -->
-        <div id="selectedMovies" class="mt-8">
-            <h2 class="text-xl font-semibold mb-2">Selected Movies:</h2>
-            <ul>
-                {{#each selectedMovies}}
-                <li>{{title}}</li>
-                {{/each}}
-            </ul>
-        </div>
-
-        <!-- Include your client-side JavaScript here if needed -->
+      </div>
+      {{/each}}
     </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Include your client-side JavaScript here if needed -->
+</div>
 </body>
 </html>
