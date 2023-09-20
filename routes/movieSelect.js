@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mw = require('../s3-interactions.js');
+var session = require('express-session');
 let movies = [];
-let selectedMovies = []; // Use an array to store selected movies
+let selectedMovies = [];
+ // Use an array to store selected movies
 
 
 function isAuthenticated (req, res, next) {
@@ -45,19 +47,21 @@ router.post('/', async function(req, res, next) {
 router.post('/select', function(req, res, next) {
   try {
     const title = req.body.title;
-    const imdbID = req.body.imdbID;
-    console.log(`Selected movie: ${title} (${imdbID})`);
+    const id = req.body.id;
+    console.log(`Selected movie: ${title} (${id})`);
     // Create a new selected movie object
     const selectedMovie = {
       title: title,
-      imdbID: imdbID
+      id: id
     };
-
+    if (!req.session.selectedMovies) {
+      req.session.selectedMovies = []; // Initialize the array if it doesn't exist
+    }
     // Add the selected movie to the selectedMovies array
     selectedMovies.push(selectedMovie);
-    
+    req.session.selectedMovies.push(selectedMovie);
 
-    res.render('movieSelect', { title: 'Movie Selection', movies, selectedMovies });
+    res.render('movieSelect', { title: 'Movie Selection', movies, selectedMovies: req.session.selectedMovies });
   } catch (error) {
     console.error('Error selecting movie:', error);
     res.status(500).send('Internal Server Error');

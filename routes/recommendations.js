@@ -1,17 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const mw = require('../s3-interactions.js');
-let movies = [];
+var session = require('express-session');
+let movies = req.session.selectedMovies;
 let selectedMovies = []; // Use an array to store selected movies
 
 
-function isAuthenticated (req, res, next) {
-  if (req.session.user) next()
-  else next('route')
-}
 
-router.get('/',function(req, res, next) {
-  res.render('movieSelect', { title: req.session.selectedCountry, movies: [], selectedMovies: [], view: req.session.views });
+router.get('/', async function(req, res, next) { // Note the 'async' keyword
+  try {
+      const apiKey = '6c6dc6f91161b15e53ed5de0ceb38bfa';
+    
+    const response = await fetch(`https://api.themoviedb.org/3/watch/providers/regions?language=en-US&api_key=${apiKey}`);
+    const data = await response.json();
+    
+    countries = data.results;
+    
+    
+    
+    // Render the countryselect page with the list of countries
+    res.render('countryselect', { title: 'Country Select', countries });
+  } catch (error) {
+    console.error('Error fetching countries:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
@@ -45,12 +56,12 @@ router.post('/', async function(req, res, next) {
 router.post('/select', function(req, res, next) {
   try {
     const title = req.body.title;
-    const imdbID = req.body.imdbID;
-    console.log(`Selected movie: ${title} (${imdbID})`);
+    const id = req.body.id;
+    console.log(`Selected movie: ${title} (${id})`);
     // Create a new selected movie object
     const selectedMovie = {
       title: title,
-      imdbID: imdbID
+      id: id
     };
 
     // Add the selected movie to the selectedMovies array
