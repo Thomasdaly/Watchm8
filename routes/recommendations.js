@@ -55,7 +55,7 @@ router.get('/', async function (req, res, next) {
       const watchProviders = await fetchWatchProviders(id);
       const selectedServices = req.session.selectedServices;
       const ratings = await fetchRatingsFromOMDB(movie.title); // Fetch ratings
-    
+
       // Check if watchProviders[selectedCountry] exists and has a flatrate property
       if (
         watchProviders[selectedCountry] &&

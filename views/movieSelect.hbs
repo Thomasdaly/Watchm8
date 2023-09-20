@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
+
 <body>
     <div class="container mx-auto p-4">
 
@@ -12,7 +14,7 @@
             <button type="submit">Search</button>
         </form>
 
-        <!-- Display movie results here -->
+        <!-- Display movie results -->
         <div id="movieResults" class="mt-8">
             <h2 class="text-xl font-semibold mb-2">Movie Results:</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -22,11 +24,12 @@
                     <div class="px-6 py-4 text-center"> <!-- Added text-center class here -->
                         <div class="provider-name text-xl mb-2">{{title}}</div>
 
-                        <!-- Use a form for each movie to allow selecting it -->
+                        <!-- form for each movie to allow selecting it -->
                         <form method="post" action="/movieselect/select">
                             <input type="hidden" name="title" value="{{title}}">
                             <input type="hidden" name="id" value="{{id}}">
-                            <button type="submit" class="watch-trailer-button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                            <button type="submit"
+                                class="watch-trailer-button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
                                 Select
                             </button>
                         </form>
@@ -37,4 +40,5 @@
         </div>
     </div>
 </body>
+
 </html>
