@@ -2,11 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+
+.streaming-service {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+  cursor: pointer; /* Add a pointer cursor to indicate interactivity */
 }
 
-a {
-  color: #00B7FF;
+.streaming-service img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.streaming-service .provider-name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Style for selected streaming service cards */
+.selected {
+  background-color: #e0e0e0; /* Define the highlight color */
 }

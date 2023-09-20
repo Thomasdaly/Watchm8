@@ -35,7 +35,7 @@ router.get('/', async function(req, res, next) { // Note the 'async' keyword
       selectedCountry = country;
       console.log(selectedCountry);
       req.session.selectedCountry = selectedCountry;
-      res.render('countryselect', { title: 'Country Selection', countries, selectedCountry });
+      res.redirect('/serviceselect');
     } catch (error) {
       console.error('Error selecting country:', error);
       res.status(500).send('Internal Server Error');
