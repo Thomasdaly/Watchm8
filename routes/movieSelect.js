@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mw = require('../s3-interactions.js');
 var session = require('express-session');
 let movies = [];
 let selectedMovies = [];
