@@ -8,12 +8,10 @@ function isAuthenticated (req, res, next) {
 }
 
 /* GET home page. */
-router.get('/', isAuthenticated, function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', { title: 'WatchM8' });
 });
 
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login' });
-});
+
 
 module.exports = router;

@@ -30,9 +30,10 @@ router.get('/', async function(req, res, next) {
     }
   });
 // Example route for handling form submission
-router.post('/preferences', (req, res) => {
+router.post('/', (req, res) => {
     const selectedServices = req.body.selectedServices;
     req.session.selectedServices = selectedServices;
+    console.log(`Selected services: ${selectedServices}`);
     res.redirect('/recommendations');
 });
 

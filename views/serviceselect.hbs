@@ -1,33 +1,15 @@
-<style>
-        /* Additional CSS styles for the streaming service icons */
-        .streaming-service {
-            border: 1px solid #ddd; /* Add a border for better separation */
-            padding: 10px;
-            text-align: center;
-            background-color: #fff; /* Add a white background for each service */
-        }
-
-        .streaming-service img {
-            max-width: 100%; /* Ensure the images don't exceed their container */
-            height: auto; /* Maintain the aspect ratio of the images */
-            display: block; /* Remove extra space below images */
-            margin: 0 auto; /* Center the images horizontally */
-        }
-
-        .streaming-service .provider-name {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+<head>
+    
+        
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
     <h1>Select Your Preferred Streaming Services</h1>
-    <form action="/preferences" method="POST">
+    <form action="/serviceselect" method="POST">
         <div class="container mx-auto px-4 py-5">
             <div class="mx-auto grid grid-cols-5 gap-4">
                 {{#each filteredStreamingServices}}
-                <div class="streaming-service rounded-lg overflow-hidden shadow-lg">
-                    <input class="checkbox-input" type="checkbox" name="selectedServices" value="{{provider_id}}">
+                <div class="streaming-service rounded-lg overflow-hidden shadow-lg" data-provider-id="{{provider_id}}">
                     <img src="https://image.tmdb.org/t/p/w185/{{logo_path}}" alt="{{provider_name}} Logo">
                     <div class="px-6 py-4">
                         <div class="provider-name text-xl mb-2">{{provider_name}}</div>
@@ -36,6 +18,29 @@
                 {{/each}}
             </div>
         </div>
+        <input type="hidden" name="selectedServices" id="selectedServices" value="">
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        // Add JavaScript to handle highlighting and data capture
+        const streamingServiceCards = document.querySelectorAll('.streaming-service');
+        const selectedServicesInput = document.getElementById('selectedServices');
+
+        streamingServiceCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('selected');
+                const providerId = card.getAttribute('data-provider-id');
+                const selectedServices = selectedServicesInput.value.split(',');
+
+                if (selectedServices.includes(providerId)) {
+                    selectedServices.splice(selectedServices.indexOf(providerId), 1);
+                } else {
+                    selectedServices.push(providerId);
+                }
+
+                selectedServicesInput.value = selectedServices.join(',');
+            });
+        });
+    </script>
 </body>
